@@ -1,0 +1,5 @@
+#!/bin/sh
+
+selection=$(ls ~/.local/bin/youtube* -1 | cut -d '_' -f2 | sed 's/\b\(.\)/\u\1/g' |dmenu -p "Category: " | sed 's/./\L&/g')
+
+youtube_"$selection"_dl.sh

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+var1="$(echo "resume\nnewvideo" | dmenu)"
+
+case "$var1" in
+    resume) mpv $(cat ~/.cache/mpv.log);;
+    newvideo) :>~/.cache/mpv.log && mpv --save-position-on-quit --input-ipc-server=/tmp/mpvsocket $(xclip -o) && xclip -o >~/.cache/mpv.log || printf "Invalid URL" > $XNOTIFY_FIFO ;;
+esac >/dev/null

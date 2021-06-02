@@ -1,0 +1,332 @@
+.TH XNOTIFY 1
+.SH NAME
+xnotify \- popup a notification on the screen
+.SH SYNOPSIS
+.B xnotify
+.RB [ \-o ]
+.RB [ \-G
+.IR gravity ]
+.RB [ \-b
+.IR button ]
+.RB [ \-g
+.IR geometry ]
+.RB [ \-h
+.IR height ]
+.RB [ \-m
+.IR monitor ]
+.RB [ \-s
+.IR seconds ]
+.SH DESCRIPTION
+.B xnotify
+is a notification launcher for X,
+it receives a notification specification from standard input
+and shows a notification on the screen.
+The notification disappears automatically after a given number of seconds
+or after a mouse click is operated on it.
+.PP
+The options are as follows:
+.TP
+.BI "\-G " gravity
+Specify the gravity,
+that is, where in the screen to display xnotify.
+.I gravity
+can be "NE" for NorthEastGravity (display on the top right corner of the screen);
+"SE" for SouthEastGravity (display on the bottom right corner of the screen);
+"C" for CenterGravity (display on the center of the screen);
+etc.
+.TP
+.BI "\-b " button
+Specifies a number between 1 and 5 to be the mouse action button.
+When clicking over a notification with the action button,
+the notification will close,
+and xnotify will output to its stdout the value of the notification's
+.B CMD:
+option.
+.TP
+.BI "\-g " geometry
+Specifies the geometry in the form
+.B [<WIDTH>x<HEIGHT>][{-+}<XOFFSET>{-+}<YOFFSET>].
+Replace
+.B <WIDTH>
+by the desired width,
+.B <HEIGHT>
+by the desired minimum height, and so on.
+The height is the minimum height of a notification;
+a notification that contains a more than one line or an image can get bigger than this minimum height.
+A value of 0 sets a field to the default value.
+So, for example,
+.B -g 0x80+0+0
+set the minimum height to 80 pixels while maintaining other values to the default.
+.B <XOFFSET>
+and
+.B <YOFFSET>
+can be preceded by either a minus or a plus
+(meaning negative or positive values).
+Fields in square brackets are optional.
+So, for example,
+.B "-g 0x80"
+is the same as
+.BR "-g 0x80+0+0" ;
+and
+.B "-g -10+10"
+is the same as
+.BR "-g 0x0-10+10" .
+.TP
+.BI "\-h " height
+Maximum height (in pixels) of a notification window.
+.TP
+.BI "\-m " monitor
+Makes xnotify be displayed on the specified monitor.
+Monitor numbers start from 0.
+Without this option,
+xnotify is displayed on the first monitor (that is, the monitor 0).
+.TP
+.B \-o
+With this option,
+only one notification should exist at a time.
+So, when a new notification appears, the other ones are removed.
+.TP
+.BI "\-s " seconds
+Specify the time, in seconds,
+for a notification to be displayed before it is removed from screen.
+Without this option, the default of 10 seconds is used.
+If this option is set to 0 (zero), the notification is displayed indefinitely until manually closed.
+.PP
+Each line read from stdin specify a notification and has the following format:
+.IP
+.EX
+ITEM := [NAME:VALUE TABS] TEXT NEWLINE
+.EE
+.PP
+That means that each line is composed by
+an optional set of name-value pairs separated by colon (:) followed by tabs,
+then the text of the notification,
+then a newline.
+Brackets group optional elements.
+Empty lines are ignored.
+.PP
+The TEXT of a notification specification can contain tabs.
+Each tab is converted to a line break on the notification.
+.PP
+The following names are currently accepted for the NAME:VALUE pairs:
+.TP
+.B IMG:
+Specify the path of a image to be displayed on the notification.
+.TP
+.B TAG:
+Specify a string to be the notification's tag.
+When a notification with a given tag spawns,
+all other notifications with the same tag disappears.
+.TP
+.B CMD:
+Specify a string to be output when clicking on the notification with the action mouse button.
+.TP
+.B BG:
+Specify the color of the notification background.
+.TP
+.B FG:
+Specify the color of the notification text (i.e., its foreground).
+.TP
+.B BRD:
+Specify the color of the notification border.
+.TP
+.B SEC:
+Specify the time, in seconds, that the notification should stay visible.
+If set to zero, the notification will stay visible until being clicked.
+.PP
+Clicking on a notification removes it from the screen.
+.SH ENVIRONMENT
+The following environment variables affect the execution of
+.B xnotify
+.TP
+.B DISPLAY
+The display to start
+.B xnotify
+on.
+.SH RESOURCES
+.B xnotify
+understands the following X resources.
+.TP
+.B xnotify.title.font
+The fonts to draw the notification title text.
+The title is the first line of the notification, if there is more than one.
+More than one font can be specified, separated by comma (,).
+If more than one font is specified, the first font with a given glyph
+is used to display that glyph on the screen.
+.TP
+.B xnotify.body.font
+The fonts to draw the notification body text.
+The body text is any line after the first line.
+.TP
+.B xnotify.background
+The color of the notification background.
+.TP
+.B xnotify.foreground
+The color of the notification text.
+.TP
+.B xnotify.border
+The color of the border around a notification.
+.TP
+.B xnotify.geometry
+The geometry in the form 
+.BR [<WIDTH>x<HEIGHT>][{+-}<XOFFSET>{+-}<YOFFSET>] .
+See the description of the option
+.B -g
+for more information.
+.TP
+.B xnotify.gravity
+Where in the screen to display notifications.
+See the description of the option
+.B -G
+for more information.
+.TP
+.B xnotify.borderWidth
+The size in pixels of the border around a notification.
+.TP
+.B xnotify.maxHeight
+The maximum height of a notification window in pixels.
+.TP
+.B xnotify.gap
+The gap between notifications.
+.TP
+.B xnotify.imageWidth
+The size of the image attached to the notification.
+.TP
+.B xnotify.leading
+The space between lines.
+.TP
+.B xnotify.padding
+The space around the content inside the notification popup window.
+.TP
+.B xnotify.shrink
+If set to
+.BR "\(dqtrue\(dq" ,
+the notification width will shrink to its content size.
+If set to
+.BR "\(dqfalse\(dq" ,
+notification width will be constant.
+.TP
+.B xnotify.alignment
+If set to
+.BR "\(dqleft\(dq" ,
+.BR "\(dqcenter\(dq" ,
+or
+.BR "\(dqright\(dq" ,
+text is aligned to the left, center, or right of the popup window, respectively.
+By default, notification text is aligned to the left of the notification popup window.
+.TP
+.B xnotify.wrap
+If set to
+.BR "\(dqtrue\(dq" ,
+lines longer than the notification width will wrap rather than being truncated.
+If set to
+.BR "\(dqfalse\(dq" ,
+lines will be truncated.
+.SH SIGNALS
+.B xnotify
+respond to signals sent to it.
+.TP
+.B SIGUSR1
+Close all notifications.
+.TP
+.B SIGUSR2
+Print the CMD of the first notification and then close all notifications.
+.TP
+.B SIGSTOP
+Stop
+.BR xnotify .
+When this signal is sent,
+all new notifications are accumuled until
+.B xnotify
+receive a
+.B SIGCONT
+signal.
+This signal is useful to be sent when a window is fullscreen,
+so xnotify will not annoy with notifications on top of the fullscreen window.
+A
+.B SIGUSR1
+signal must be sent before a
+.B SIGSTOP
+in order to
+close all notifications before stop.
+.TP
+.B SIGCONT
+Display all accumulated notifications and continue
+.B xnotify
+after being stop
+with
+.BR SIGSTOP .
+.SH EXAMPLES
+The following is an example of how to run XNotify.
+.IP
+.EX
+$ xnotify \-m 10 \-G NE \-g \-10+10 \-s 15
+.EE
+.PP
+This line means: read notifications from stdin,
+display the notifications on the north east
+.RB ( "-G NE" )
+of the monitor 0
+.RB ( "-m 0" ),
+that is, on the upper right corner of the first monitor.
+The notifications should be placed -10 pixels to the left and +10 pixels down
+(thus creating a 10 pixel gap with the upper right corner).
+Each notification stay alive for 15 seconds.
+.PP
+To create a named pipe for XNotify,
+the following lines can be placed on
+.BR ~/.xinitrc .
+This will create a named pipe unique to the current X display in the home directory at
+.BR ~/.cache .
+Then, it will open
+.B xnotify
+in the background, reading from this named pipe.
+.IP
+.EX
+XNOTIFY_FIFO="$HOME/.cache/xnotify$DISPLAY.fifo"
+export XNOTIFY_FIFO
+rm \-f $XNOTIFY_FIFO
+mkfifo $XNOTIFY_FIFO
+xnotify 0<>$XNOTIFY_FIFO &
+.EE
+.PP
+Then a notification can be created by echoing into the named pipe:
+.IP
+.EX
+$ echo Hello World > $XNOTIFY_FIFO
+.EE
+.PP
+To create a notification with a image,
+input to XNotify a line beginning with
+.I IMG:/path/to/file.png
+followed by a tab.
+For example:
+.IP
+.EX
+$ printf 'IMG:/path/to/file.png\etThis is a notification\en' > $XNOTIFY_FIFO
+.EE
+.PP
+.B xnotify
+does not read notifications from dbus.
+For
+.B xnotify
+to read dbus notifications,
+its stdin must be fed with the output of
+.IR tiramisu (1)
+parsed by
+.IR jq (1).
+The following line makes
+.IR tiramisu (1)
+send dbus notifications to
+.BR xnotify .
+This line can be added to
+.B ~/.xinitrc
+after the line calling
+.BR xnotify .
+.IP
+.EX
+tiramisu -j | jq --raw-output --unbuffered '.summary + "\et" + .body' > $XNOTIFY_FIFO &
+.EE
+.SH SEE ALSO
+.IR tiramisu (1),
+.IR herbe (1)

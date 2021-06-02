@@ -1,0 +1,14 @@
+export BROWSER='brave'
+export CARGO_HOME="$HOME/Programming/cargo"
+export DOTBARE_DIR="$HOME/.local/pamux/"
+export EDITOR='nvim'
+export GNUPGHOME="$HOME/.local/share/gnupg"
+export HOME='/home/rabbitbabbit'
+export LESSHISTFILE='-'
+export PASS_STORE_DIR="$HOME/.local/pass"
+export PASSWORD_STORE_KEY="$HOME/.local/pass"
+export RUSTUP_HOME="$HOME/Programming/rustup"
+export TERMINAL='st'
+export WGETRC="$HOME/.config/wget/wgetrc"
+
+export PATH=$PATH:$HOME/.local/bin

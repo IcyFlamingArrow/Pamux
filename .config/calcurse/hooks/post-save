@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sigdwmblocks 4

@@ -1,0 +1,21 @@
+# vim: filetype=conf
+
+alias ..='cd ..'
+alias c='clifm'
+alias dwmv='cd $HOME/.local/damux/dwm && nvim config.h'
+alias locate='plocate'
+alias info='info --vi-keys --variable link-style=green'
+alias minecraft='java -Xmx4096M -Xms1056M -jar'
+alias mutt='neomutt'
+alias n='nnn'
+alias pamux='dotbare'
+alias tsmr='transmission-remote'
+alias update='sudo pacman -Syu'
+alias updatedb='doas updatedb'
+alias v='nvim'
+alias va='nvim $HOME/.config/shell/aliasrc'
+alias vc='nvim $HOME/.config/cmus/rc'
+alias vm='nvim $HOME/.config/mimeapps.list'
+alias vv='nvim $HOME/.config/nvim/init.vim'
+alias vp='nvim $HOME/.config/shell/profile'
+

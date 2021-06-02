@@ -1,0 +1,6 @@
+#!/bin/sh
+
+word=$(echo "" | dmenu -p " Word to Define:")
+
+[ -z "$word" ]  && exit ||
+    mkfifo ~/.cache/word_pipe 2> /dev/null & echo "$word" >> ~/.cache/word_pipe && st -e sh -c 'sdcv -c -0 "$(cat ~/.cache/word_pipe)" | less -RX ' && rm ~/.cache/word_pipe || rm ~/.cache/word_pipe 

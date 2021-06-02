@@ -1,0 +1,7 @@
+#!/bin/sh
+
+XNOTIFY_FIFO="$HOME/.cache/xnotify$DISPLAY.fifo"
+export XNOTIFY_FIFO
+rm -f $XNOTIFY_FIFO
+mkfifo $XNOTIFY_FIFO
+xnotify 0<>$XNOTIFY_FIFO

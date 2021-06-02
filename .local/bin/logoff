@@ -1,0 +1,17 @@
+#!/bin/sh
+
+state=$(printf "%b\n" "Reboot\nPoweroff\nLock\nLogoff" | dmenu -i)
+
+[ -z "$state" ] && exit
+
+confirmation=$(printf "%b\n" "No\nYes" | dmenu -i -p "Am I Certain?")
+
+[ "$confirmation" = No ] && exit
+
+case $state in 
+    Reboot) loginctl reboot ;;
+    Poweroff) loginctl poweroff now ;;
+    Lock) slock ;;
+    Logoff) killall xinit ;;
+esac
+

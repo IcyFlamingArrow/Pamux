@@ -1,0 +1,92 @@
+"brave"
+    Mod4 + w
+
+####################
+# Terminal programs
+####################
+
+"$TERMINAL"
+    Mod4 + Return
+
+"$TERMINAL -e calcurse"
+    Mod4 + c
+
+"$TERMINAL -e cmus"
+    Mod4 + Shift + c
+
+"$TERMINAL -e clifm"
+    Mod4 + Shift + f
+
+"$TERMINAL -e htop"
+    Mod4 + Shift + h
+
+"$TERMINAL -e neomutt"
+    Mod4 + Shift + m
+
+###################
+# Dmenu and Scripts
+###################
+
+"dmenu_run"
+    Mod4 + d
+
+"dmenu_dictionary"
+    Mod4 + Shift + d
+
+"dmenu_epub_graphical"
+    Mod4 + e
+
+"network_disconnect"
+    Mod4 + i
+
+"dmkill"
+    Mod4 + Shift + k 
+
+"dmenuunicode"
+    Mod4 + grave
+
+"logoff"
+    Mod4 + BackSpace
+
+########
+# Audio
+########
+
+"volume_control toggle"
+    XF86AudioMute
+
+"volume_control lower"
+    XF86AudioLowerVolume
+
+"volume_control raise"
+    XF86AudioRaiseVolume
+
+
+#######
+# Cmus
+#######
+
+"cmus-remote --prev"
+    XF86AudioPrev
+
+"cmus-remote -u"
+    XF86AudioPlay
+
+"cmus-remote --next"
+    XF86AudioNext
+
+"cmus-remote --volume -10%"
+    F7
+
+"cmus-remote --volume +10%"
+    F8
+
+###############
+# Miscellaneous
+###############
+
+"brightnessctl set 750-"
+    XF86MonBrightnessDown
+
+"brightnessctl set 750+"
+    XF86MonBrightnessUp

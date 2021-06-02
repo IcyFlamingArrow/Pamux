@@ -1,0 +1,30 @@
+#!/bin/sh
+
+option1=$(printf "%b\n" "colorthief\ncolorz\nhaishoku\nschemer2\nwal\nNormal\nRandom" | dmenu -i)
+
+[ -z "$option1" ] && exit 
+
+option2=$(printf "%b\n" "light\ndark" | dmenu )
+
+[ -z "$option2" ] && exit
+
+case ${option1}_${option2} in
+    colorthief_light) wal --backend colorthief -li ~/.cache/wall.png ;; 
+    colorthief_dark) wal --backend colorthief -i ~/.cache/wall.png ;; 
+    colorz_light) wal --backend colorz -li ~/.cache/wall.png ;; 
+    colorz_dark) wal --backend colorz -i ~/.cache/wall.png ;; 
+    haishoku_light) wal --backend haishoku -li ~/.cache/wall.png ;; 
+    haishoku_dark) wal --backend haishoku -i ~/.cache/wall.png ;; 
+    schemer2_light) wal --backend schemer2 -li ~/.cache/wall.png ;; 
+    schemer2_dark) wal --backend schemer2 -i ~/.cache/wall.png ;; 
+    wal_light) wal --backend wal -li ~/.cache/wall.png ;; 
+    wal_dark) wal --backend wal -i ~/.cache/wall.png ;; 
+    Normal_light) wal -li ~/.cache/wall.png ;; 
+    Normal_dark) wal -i ~/.cache/wall.png ;; 
+    Random_light) wal --theme random_light ;;
+    Random_dark) wal --theme random_dark ;;
+
+esac
+
+sed -i '/Urg/d' "$HOME/.cache/wal/colors-wal-dwm.h" && cd ~/.local/damux/dwm/ && sudo make clean install && cd $HOME/.local/damux/st/ && sudo make clean install && cd ~/.local/damux/dmenu/ && sudo make clean install
+

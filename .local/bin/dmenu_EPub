@@ -1,0 +1,6 @@
+#!/bin/sh
+
+Epub_Selection="$(find "/home/rabbitbabbit/Documents/E-book/EPub/" -maxdepth 1 -type f | cut -d'/' -f7 | sed 's/_/ /g' | sed 's/.epub//g' | 
+    dmenu -nb '#FFFFFF' -nf '#000000' -p "EPub Name" -bw 3 -g 3 -l 3 | sed 's/ /_/g')"
+[ -z "$Epub_Selection" ] && exit || st -e epy "$Epub_Selection".epub
+

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+PDF_Selection="$(find "/home/rabbitbabbit/Documents/E-book/Textbook/" -type f | cut -d'/' -f7 | sed 's/_/ /g' | dmenu -fn 'hack:pixelsize=14' -nb '#FFFFFF' -nf '#000000' -p "Textbook to Read (scroll for more options)" -bw 1 -g 3 -l 3  | sed 's/ /_/g')"
+[ -z "$PDF_Selection" ] && exit ||  
+    zathura /home/rabbitbabbit/Documents/E-book/Textbook/"$PDF_Selection"
+

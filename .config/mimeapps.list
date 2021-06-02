@@ -1,0 +1,15 @@
+
+[Default Applications]
+
+text/html=brave-browser.desktop;
+text/plain=text.desktop;
+text/x-shellscript=text.desktop;
+application/pdf=pdf.desktop;
+application/epub+zip=pdg.desktop;
+image/png=img.desktop;
+image/jpeg=img.desktop;
+image/gif=img.desktop;
+video/x-matroska=video.desktop;
+video/mp4=video.desktop;
+video/MP2T=video.desktop;
+inode/directory=file.desktop

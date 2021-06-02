@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd /opt/activitywatch
+
+./aw-server/aw-server &
+./aw-watcher-afk/aw-watcher-afk &
+./aw-watcher-window/aw-watcher-window &
