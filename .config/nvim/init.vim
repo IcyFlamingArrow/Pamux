@@ -88,9 +88,9 @@ filetype plugin on
 set relativenumber
 set number
 set expandtab
-set smarttab
+set tabstop=4 
 set shiftwidth=4
-set tabstop=4
+set smarttab
 set guifont=Mononoki\ Nerd\ Font:h15
 set clipboard=unnamedplus
 

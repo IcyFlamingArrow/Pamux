@@ -1,4 +1,12 @@
-"brave"
+# vim:filetype=conf
+
+"$BROWSER"
+    Mod4 + Shift + w
+
+"anki.sh"
+    Mod4 + a
+
+"flash_window"
     Mod4 + w
 
 ####################
@@ -11,17 +19,23 @@
 "$TERMINAL -e calcurse"
     Mod4 + c
 
-"$TERMINAL -e cmus"
-    Mod4 + Shift + c
-
-"$TERMINAL -e clifm"
+"$TERMINAL -e $FILE_MANAGER"
     Mod4 + Shift + f
 
 "$TERMINAL -e htop"
     Mod4 + Shift + h
 
+"$TERMINAL -e ncmpcpp"
+    Mod4 + n
+
 "$TERMINAL -e neomutt"
-    Mod4 + Shift + m
+    Mod4 + Shift + n
+
+"$TERMINAL -e dijo"
+    Mod4 + Shift + j
+
+"$TERMINAL -e termdown 20m"
+    Mod4 + Shift + t
 
 ###################
 # Dmenu and Scripts
@@ -38,6 +52,12 @@
 
 "network_disconnect"
     Mod4 + i
+
+"passmenu"
+    Mod4 + p
+
+"mpv_video"
+    Mod4 + v
 
 "dmkill"
     Mod4 + Shift + k 
@@ -66,19 +86,19 @@
 # Cmus
 #######
 
-"cmus-remote --prev"
+"mpc prev"
     XF86AudioPrev
 
-"cmus-remote -u"
+"mpc toggle"
     XF86AudioPlay
 
-"cmus-remote --next"
+"mpc next"
     XF86AudioNext
 
-"cmus-remote --volume -10%"
+"mpc volume -10"
     F7
 
-"cmus-remote --volume +10%"
+"mpc volume +10"
     F8
 
 ###############
@@ -90,3 +110,9 @@
 
 "brightnessctl set 750+"
     XF86MonBrightnessUp
+
+"screenshot Full"
+    Print
+
+"screenshot Selection"
+    Shift + Print

@@ -2,7 +2,7 @@
 #define PATH(name)                      "/home/rabbitbabbit/.local/damux/dwmblocks/blocks/"name
 
 /* buffer size for capturing output of the programs used for updating blocks */
-#define CMDOUTLENGTH                    50
+#define CMDOUTLENGTH                    80
 
 /* DELIMITERENDCHAR must be less than 32.
  * At max, DELIMITERENDCHAR - 1 number of clickable blocks are allowed.

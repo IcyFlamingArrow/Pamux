@@ -1,3 +1,3 @@
 #!/bin/sh
 
-connamnctl disable wifi && sigdwmblocks 6
+connmanctl disable wifi && sleep 3 && sigdwmblocks 6

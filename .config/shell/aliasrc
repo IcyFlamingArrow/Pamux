@@ -1,10 +1,12 @@
 # vim: filetype=conf
 
 alias ..='cd ..'
-alias c='clifm'
+alias brave_feed="devour brave $HOME/.config/sfeed/feeds.html"
+alias doom='~/.emacs.d/bin/doom'
 alias dwmv='cd $HOME/.local/damux/dwm && nvim config.h'
 alias locate='plocate'
 alias info='info --vi-keys --variable link-style=green'
+alias mbsync='mbsync -Va -c .config/mbsync/mbsyncrc'
 alias minecraft='java -Xmx4096M -Xms1056M -jar'
 alias mutt='neomutt'
 alias n='nnn'
@@ -15,7 +17,12 @@ alias updatedb='doas updatedb'
 alias v='nvim'
 alias va='nvim $HOME/.config/shell/aliasrc'
 alias vc='nvim $HOME/.config/cmus/rc'
+alias vk='nvim $HOME/.config/kmonad/mykeyboard.kbd'
 alias vm='nvim $HOME/.config/mimeapps.list'
-alias vv='nvim $HOME/.config/nvim/init.vim'
+alias vmpd='nvim $HOME/.config/mpd/mpd.conf'
 alias vp='nvim $HOME/.config/shell/profile'
-
+alias vv='nvim $HOME/.config/nvim/init.vim'
+alias vx='nvim $HOME/.config/xplr/init.lua'
+alias x='xplr'
+alias xv='sl'
+alias yay='sl'

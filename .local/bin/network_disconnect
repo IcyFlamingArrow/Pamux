@@ -1,11 +1,13 @@
 #!/bin/sh
 
-var1=$(printf "%b\n" "Down\nUp" | dmenu -p "WiFi:")
+WIFI_ACTION="$(printf "%b\n" "Down\nUp" | dmenu -p "WiFi:")"
+WIFI_STATUS="$(connmanctl services)"
 
-case "$var1" in
-    Down) [ -n "$var1" ] && connmanctl disable wifi && echo "Network Disconnected" "😃"> $XNOTIFY_FIFO || printf "Already Disconnected%s\n" "😃" > $XNOTIFY_FIFO ;;
-    Up) [ -n "$var1" ] && connmanctl enable wifi && echo "Network Connected" "😒" > $XNOTIFY_FIFO || printf "Already Connected%s\n" "😒" > $XNOTIFY_FIFO ;;
+case "$WIFI_ACTION" in
+    Down) [ -n "$WIFI_STATUS" ] && connmanctl disable wifi && echo "Network Disconnecting ..." "😃"> $XNOTIFY_FIFO || printf "Already Disconnected%s\n" " 😃" > $XNOTIFY_FIFO ;;
+    Up) [ -z "$WIFI_STATUS" ] && connmanctl enable wifi && sleep 0.5 && echo "Network Connecting ..." "😒" > $XNOTIFY_FIFO || printf "Already Connected%s\n" " 😒" > $XNOTIFY_FIFO ;;
 esac
 
-sleep 1
+sleep 3
 sigdwmblocks 6
+

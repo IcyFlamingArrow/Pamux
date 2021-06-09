@@ -1,6 +1,0 @@
-#!/bin/sh
-
-JOURNAL_DIR="$HOME/Documents/Journal/$(date +%G)/$(date +%B)"
-
-mkdir -p "$JOURNAL_DIR"
-cd "$JOURNAL_DIR" && nvim "$(date +%A_%B_%d)"

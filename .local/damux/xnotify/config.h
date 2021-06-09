@@ -9,7 +9,7 @@ static struct Config config = {
 	.border_color = "#3465a4",
 
 	/* geometry and gravity (see the manual) */
-	.geometryspec = "0x0+3+20",
+	.geometryspec = "0x0-4+24",
 	.gravityspec = "NE",
 
 	/* size of border, gaps and image (in pixels) */
@@ -30,7 +30,7 @@ static struct Config config = {
 	.wrap = 0,
 
 	/* time, in seconds, for a notification to stay alive */
-	.sec = 3,
+	.sec = 2,
 
 	/* mouse button that makes xnotify prints a notification's CMD: */
 	.actionbutton = Button3

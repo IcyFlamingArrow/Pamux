@@ -1,7 +1,7 @@
 #!/bin/sh
 
 modprobe zram num_devices=1
-zramctl --find --streams 6 --size 10GB --algorithm zstd
+zramctl --find --streams 6 --size 18GB --algorithm zstd
 mke2fs -t ext4 -O ^has_journal -L "zram device" /dev/zram0
 mkswap --label 'zram swap parition' /dev/zram0
 swapon --priority 10 /dev/zram0

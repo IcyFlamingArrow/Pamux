@@ -1,6 +1,6 @@
 #!/bin/sh
 
-state=$(printf "%b\n" "Reboot\nPoweroff\nLock\nLogoff" | dmenu -i)
+state=$(printf "%b\n" "Reboot\nPoweroff\nLock" | dmenu -i)
 
 [ -z "$state" ] && exit
 
@@ -12,6 +12,5 @@ case $state in
     Reboot) loginctl reboot ;;
     Poweroff) loginctl poweroff now ;;
     Lock) slock ;;
-    Logoff) killall xinit ;;
 esac
 
