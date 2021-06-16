@@ -10,4 +10,7 @@ _dotbare_completion_cmd
 NEWLINE=$'\n'
 PS1="[%B%F{magenta}%n%f%b | %F{green}%2/%f] ${NEWLINE}"
 
+bindkey -s '^N' 'x\n'
+
 . /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+. /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh

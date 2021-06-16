@@ -1,6 +1,6 @@
 #!/bin/sh
 
-option1=$(printf "%b\n" "Normal\nRandom\nPrevious" | dmenu -i)
+option1=$(printf "%b\n" "Normal\nRandom" | dmenu -i)
 
 [ -z "$option1" ] && exit 
 
@@ -13,10 +13,8 @@ case ${option1}_${option2} in
     Normal_dark) wal -i ~/.cache/wall.png ;; 
     Random_light) wal --theme random_light ;;
     Random_dark) wal --theme random_dark ;;
-    Previous_light) wal -R ;;
-    Previous_dark) wal -R ;;
 
 esac
 
-sed -i '/Urg/d' "$HOME/.cache/wal/colors-wal-dwm.h" && cd ~/.local/damux/dwm/ && sudo make clean install && cd $HOME/.local/damux/st/ && sudo make clean install && cd ~/.local/damux/dmenu/ && sudo make clean install
+sed -i '/Urg/d' "$HOME/.cache/wal/colors-wal-dwm.h" && cd ~/.local/damux/dwm/ && sudo make clean install && cd "$HOME"/.local/damux/st/ && sudo make clean install && cd ~/.local/damux/dmenu/ && sudo make clean install
 

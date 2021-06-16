@@ -1,4 +1,4 @@
-export BROWSER='nyxt'
+export BROWSER='brave'
 export CARGO_HOME="$HOME/Programming/cargo"
 export DOTBARE_DIR="$HOME/.local/pamux/"
 export EDITOR='nvim'
@@ -7,10 +7,6 @@ export GNUPGHOME="$HOME/.local/share/gnupg"
 export HOME='/home/rabbitbabbit'
 export LESSHISTFILE='-'
 export MPD_HOST="$HOME/.cache/mpd"
-export NNN_OPTS="cH"
-export NNN_OPENER="launch"
-export NNN_BMS="b:$HOME/.local/bin;d:$HOME/.local/damux;D:$HOME/Downloads;m:$HOME/Downloads/minecraft"
-export NNN_PLUG='j:-_journal.nnn'
 export NOTMUCH_CONFIG="$HOME/.config/notmuch-config"
 export PASSWORD_STORE_DIR="$HOME/.local/pass"
 export RUSTUP_HOME="$HOME/Programming/rustup"

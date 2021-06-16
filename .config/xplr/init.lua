@@ -369,6 +369,28 @@ xplr.config.modes.builtin.default = {
           "ExplorePwdAsync"
         }
       },
+      ["*"] = {
+          help = "Make Executable",
+          messages = {
+              {
+                  BashExecSilently = [===[
+                  chmod +x "$XPLR_FOCUS_PATH" && printf "Executable now %s\n" > "$XNOTIFY_FIFO"
+                  ]===]
+              }
+          }
+      },
+      ["e"] = {
+        help = "Editor",
+        messages = {
+          {
+            BashExec = [===[
+            ${EDITOR:-vi} "${XPLR_FOCUS_PATH:?}"
+            ]===]
+          },
+          "PopMode",
+          "Refresh"
+        }
+      },
       ["G"] = {
         help = "go to bottom",
         messages = {"PopMode", "FocusLast"}
@@ -404,10 +426,6 @@ xplr.config.modes.builtin.default = {
       left = {
         help = "back",
         messages = {"Back"}
-      },
-      ["q"] = {
-        help = "quit",
-        messages = {"Quit"}
       },
       ["r"] = {
         help = "rename",
@@ -462,6 +480,10 @@ xplr.config.modes.builtin.default = {
           "PopMode",
           "Refresh"
         }
+      },
+      ["q"] = {
+          help = "quit",
+          messages = {"Quit"}
       },
 --------------- Modes -----------------------
       [","] = {
@@ -595,31 +617,6 @@ xplr.config.modes.builtin.selection_ops = {
             read -p "[enter to continue]"
             ]===]
           },
-          "PopMode",
-          "Refresh"
-        }
-      },
-      ["x"] = {
-        help = "open in gui",
-        messages = {
-          {
-            BashExecSilently = [===[
-            if [ -z "$OPENER" ]; then
-              if command -v xdg-open; then
-                OPENER=xdg-open
-                elif command -v open; then
-                OPENER=open
-              else
-                echo 'LogError: $OPENER not found' >> "${XPLR_PIPE_MSG_IN:?}"
-                exit 1
-              fi
-            fi
-            (while IFS= read -r line; do
-            $OPENER "${line:?}" > /dev/null 2>&1
-            done < "${XPLR_PIPE_RESULT_OUT:?}")
-            ]===]
-          },
-          "ClearScreen",
           "PopMode",
           "Refresh"
         }
@@ -930,21 +927,27 @@ xplr.config.modes.builtin.action = {
           "Refresh"
         }
       },
-      ["e"] = {
-        help = "open in editor",
+      ["d"] = {
+          help = "Vimdiff",
+          messages = {
+              "PopMode",
+              {
+                  BashExec = [===[
+                  xplr-vimdiff.sh
+                  ]===]
+              },
+          }
+      },
+      ["j"] = {
+        help = "Journal",
         messages = {
           {
             BashExec = [===[
-            ${EDITOR:-vi} "${XPLR_FOCUS_PATH:?}"
+            journal.xplr
             ]===]
           },
-          "PopMode",
-          "Refresh"
+          "PopMode"
         }
-      },
-      esc = {
-        help = "cancel",
-        messages = {"PopMode"}
       },
       ["l"] = {
         help = "logs",
@@ -958,17 +961,6 @@ xplr.config.modes.builtin.action = {
           "PopMode"
         }
       },
-      ["j"] = {
-        help = "Journal",
-        messages = {
-          {
-            BashExec = [===[
-            journal.xplr
-            ]===]
-          },
-          "PopMode"
-        }
-    },
       ["s"] = {
         help = "selection operations",
         messages = {
@@ -979,12 +971,10 @@ xplr.config.modes.builtin.action = {
           "Refresh"
         }
       },
-      ["q"] = {
-        help = "quit",
-        messages = {
-          "Quit",
-        }
-      }
+      esc = {
+        help = "cancel",
+        messages = {"PopMode"}
+      },
     },
     on_alphabet = nil,
     on_number = nil,
@@ -1047,7 +1037,21 @@ xplr.config.modes.builtin.search = {
       },
       enter = {
           help = "enter",
-          messages = {"Enter", "PopMode"}
+          messages = {
+              {
+                  RemoveNodeFilterFromInput = "IRelativePathDoesContain"
+              },
+              {
+                  SetInputBuffer = ""
+              },
+              {
+                  BashExec = [===[
+                  xplr_conditional.sh
+                  ]===]
+              },
+              "ExplorePwdAsync",
+              "PopMode"
+          }
       },
       left = {
         help = "back",
@@ -1082,6 +1086,10 @@ xplr.config.modes.builtin.search = {
       up = {
         help = "up",
         messages = {"FocusPrevious"}
+      },
+      ["Q"] = {
+          help = "cancel",
+          messages = {"ClearNodeFilters", "PopMode", "Refresh"}
       }
     },
     on_alphabet = nil,
@@ -1090,14 +1098,12 @@ xplr.config.modes.builtin.search = {
     default = {
       help = nil,
       messages = {
-        {
-          RemoveNodeFilterFromInput = "IRelativePathDoesContain"
-        },
         "BufferInputFromKey",
         {
           AddNodeFilterFromInput = "IRelativePathDoesContain"
         },
-        "ExplorePwdAsync"
+        "ExplorePwdAsync",
+        "ResetNodeFilters"
       }
     }
   }
@@ -1397,6 +1403,12 @@ xplr.fn.builtin.fmt_general_table_row_cols_1 = function(m)
 
   return r
 end
-
+--- Unutilized Modes
+xplr.config.modes.builtin.filter = {}
+xplr.config.modes.builtin.recover = {}
+xplr.config.modes.builtin.number = {}
+xplr.config.modes.builtin.relative_path_does_contain = {}
+xplr.config.modes.builtin.relative_path_does_not_contain = {}
+xplr.config.modes.builtin.switch_layout = {}
 ---- Custom
 xplr.fn.custom = {}

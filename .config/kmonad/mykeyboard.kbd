@@ -6,21 +6,144 @@
 )
 
 (defsrc
-  esc      f1   f2   f3   f4   f5   f6   f7   f8   f9   f10              f11  f12  
+  esc      f1   f2   f3   f4   f5   f6   f7   f8   f9   f10              f11  f12  sys  del
   grv      1    2    3    4    5    6    7    8    9    0                -    =    bspc
   tab      q    w    e    r    t    y    u    i    o    p                [    ]    \    
   caps     a    s    d    f    g    h    j    k    l    ;                '    ret       
   lsft     z    x    c    v    b    n    m    ,    .    /                rsft           
-  lctl     lmet lalt           spc            ralt rctl left down up rght rctl
+  lctl     lmet lalt           spc            ralt rctl left down up rght 
 )
 
+(defalias
+mod4 (tap-hold 200 (layer-delay 200 primary-mod-workman)(layer-switch primary-mod-workman))
+num (layer-toggle numbers)
+qwe (layer-switch standard)
+echow (cmd-button "env DISPLAY=:0 echo-kmonad-primary-workman.sh")
+mpcvoldown (cmd-button "mpc volume -10")
+mpcvolup (cmd-button "mpc volume +10")
+)
 
 (deflayer default
-  esc        f1   f2   f3   f4   f5   f6   f7   f8   f9   f10              f11  f12
-  grv        1    2    3    4    5    6    7    8    9    0                -    =    esc
-  tab        q    w    e    r    t    y    u    i    o    p                [    ]    \    
-  lmet       a    s    d    f    g    h    j    k    l    ;                '    ret      
-  lsft       z    x    c    v    b    n    m    ,    .    /                rsft           
-  lctl       lalt lmet           spc            bspc bspc left down up rght rctl
+  @echow   f1   f2   f3   f4   f5   f6   @mpcvoldown   @mpcvolup    f9   f10              f11  f12      @qwe del
+  ~        !    @    #    $    %    ^    &             *            \(   \)               -    =        esc
+  tab      q    d    r    w    b    j    f             u            p    ;                [    ]        \    
+  @mod4    a    s    h    t    g    y    n             e            o    i                '    ret       
+  lmet     z    x    m    c    v    k    l             ,            .    /                rsft           
+  lctl     lalt @num           spc                     bspc bspc left down up rght 
+)
+
+(deflayer numbers
+  _        _    _    _    _    _    _    _    _    _    _                _     _    _
+  _        _    _    _    _    _    _    _    _    _    _                _    _    _
+  _        _    _    _    _    _    _    _    _    _    _                _    _    _    
+  _        _    1    2    3    4    5    6    7    8    9                0    _       
+  _        _    _    _    _    _    _    _    _    _    _                _           
+  _        _    _           _            _ _ _ _ _ _ _
+)
+
+(defalias
+anki #((layer-switch default) (cmd-button "env DISPLAY=:0 anki.sh"))
+brws #((layer-switch default)(cmd-button "env DISPLAY=:0 brave"))
+curse #((layer-switch default) (cmd-button "env DISPLAY=:0 st -e calcurse"))
+decbright (cmd-button "env DISPLAY=:0 brightnessctl set 1000-")
+diction #((layer-switch default)(cmd-button "env DISPLAY=:0 dmenu_dictionary"))
+dijo #((layer-switch default)(cmd-button "env DISPLAY=:0 st -e dijo"))
+dmenu #((layer-switch default)(cmd-button "env DISPLAY=:0 dmenu_run"))
+echo (cmd-button "env DISPLAY=:0 echo-kmonad-primary-workman.sh")
+epub #((layer-switch default)(cmd-button "env DISPLAY=:0 dmenu_epub"))
+file #((layer-switch default)(cmd-button "env DISPLAY=:0 st -e xplr"))
+flash #((layer-switch default)(cmd-button "env DISPLAY=:0 flash_window"))
+htop #((layer-switch default)(cmd-button "env DISPLAY=:0 st -e htop"))
+internet #((layer-switch default)(cmd-button "env DISPLAY=:0 /home/rabbitbabbit/.local/bin/network_disconnect"))
+incbright (cmd-button "env DISPLAY=:0 brightnessctl set 1000+")
+kill #((layer-switch default)(cmd-button "env DISPLAY=:0 dmkill"))
+logoff #((layer-switch default)(cmd-button "env DISPLAY=:0 logoff"))
+mpcnext (cmd-button "mpv next")
+mpcprev (cmd-button "mpc prev")
+mpctoggle (cmd-button "mpc toggle")
+music #((layer-switch default)(cmd-button "env DISPLAY=:0 st -e ncmpcpp"))
+neomutt #((layer-switch default)(cmd-button "env DISPLAY=:0 st -e neomutt"))
+pass #((layer-switch default)(cmd-button "env DISPLAY=:0 passmenu"))
+screen #((layer-switch default)(cmd-button "env DISPLAY=:0 import.sh Full"))
+term #((layer-switch default) (cmd-button "env DISPLAY=:0 st"))
+termdown #((layer-switch default)(cmd-button "env DISPLAY=:0 st -e termdown 20m"))
+uni #((layer-switch default)(cmd-button "env DISPLAY=:0 dmenuunicode"))
+vid #((layer-switch default)(cmd-button "env DISPLAY=:0 mpv_video"))
+voldown (cmd-button "volume_control lower")
+voltoggle (cmd-button "volume_control toggle")
+volup (cmd-button "volume_control raise")
+)
+
+(deflayer primary-mod-workman
+  @echo         f1      @decbright      @incbright      f4          f5      @voltoggle      @voldown        @volup      @mpcprev    @mpctoggle       @mpcnext   f12     @screen del
+  @uni          1       2               3               4           5       6               7               8           9           0                -          =       esc
+  tab           q       @dmenu          @diction        @flash      @brws   @dijo           @file           u           @pass       ;                [          ]       \    
+  @mod4d        @anki   s               @htop           @termdown   g       @diction        @neomutt        @epub       o           @internet        '          @term       
+  lsft          z       x               @music          @curse      v       @kill           @logoff         ,           .           /                rsft           
+  lctl          lalt    lmet                            spc                    bspc bspc left down up rght 
+)
+
+(defalias
+mod4d (layer-switch default)
+mod4e (layer-switch standard)
+mod40 (layer-toggle mod-no-left-shift)
+ankia #((layer-switch standard) (cmd-button "env DISPLAY=:0 anki.sh"))
+brwsa #((layer-switch standard)(cmd-button "env DISPLAY=:0 brave"))
+cursea #((layer-switch standard) (cmd-button "env DISPLAY=:0 st -e calcurse"))
+dictiona #((layer-switch standard)(cmd-button "env DISPLAY=:0 dmenu_dictionary"))
+dijoa #((layer-switch standard)(cmd-button "env DISPLAY=:0 st -e dijo"))
+dmenua #((layer-switch standard)(cmd-button "env DISPLAY=:0 dmenu_run"))
+echoa (cmd-button "env DISPLAY=:0 echo-kmonad-primary-workman.sh")
+epuba #((layer-switch standard)(cmd-button "env DISPLAY=:0 dmenu_epub"))
+filea #((layer-switch standard)(cmd-button "env DISPLAY=:0 st -e xplr"))
+flasha #((layer-switch standard)(cmd-button "env DISPLAY=:0 flash_window"))
+htopa #((layer-switch standard)(cmd-button "env DISPLAY=:0 st -e htop"))
+interneta #((layer-switch standard)(cmd-button "env DISPLAY=:0 /home/rabbitbabbit/.local/bin/network_disconnect"))
+killa #((layer-switch standard)(cmd-button "env DISPLAY=:0 dmkill"))
+logoffa #((layer-switch standard)(cmd-button "env DISPLAY=:0 logoff"))
+musica #((layer-switch standard)(cmd-button "env DISPLAY=:0 st -e ncmpcpp"))
+neomutta #((layer-switch standard)(cmd-button "env DISPLAY=:0 st -e neomutt"))
+passa #((layer-switch standard)(cmd-button "env DISPLAY=:0 passmenu"))
+screenaa #((layer-switch standard)(cmd-button "env DISPLAY=:0 import.sh Full"))
+terma #((layer-switch standard) (cmd-button "env DISPLAY=:0 st"))
+termdowna #((layer-switch standard)(cmd-button "env DISPLAY=:0 st -e termdown 20m"))
+unia #((layer-switch standard)(cmd-button "env DISPLAY=:0 dmenuunicode"))
+vida #((layer-switch standard)(cmd-button "env DISPLAY=:0 mpv_video"))
+)
+
+(deflayer primary-mod-qwerty
+  @echoa      f1       @decbright   @incbright   f4          f5              @voltoggle    @voldown  @volup       @mpcprev   @mpctoggle       @mpctoggle  f12 @screenaa del
+  @unia      1        2            3            4           5               6             7         8            9          0                -    =    esc
+  tab        q        @flasha      @epuba       r           @termdowna      y             u         @interneta   o          @passa           [    ]    \    
+  lmet       @ankia   s            @dmenua      @filea      g               @htopa        @dijoa    @killa       @logoffa   ;                '   @terma      
+  @mod4e     z        x            @cursea      @vida       @brwsa          @neomutta     @musica   ,            .          /                rsft           
+  lctl       lalt     @mod40                    spc                         bspc bspc left down up rght 
+)
+
+(defalias
+screena #((layer-switch default)(cmd-button "env DISPLAY=:0 import.sh Full"))
+)
+
+(deflayer mod-no-left-shift
+  esc        f1   f2        f3          f4   f5   f6   f7   f8   f9   f10              f11  f12  @screena @mod4d
+  grv        1    2         3           4    5    6    7    8    9    0                -    =    esc
+  tab        q    w         e           r    t    y    u    i    o    p                [    ]    \    
+  lmet       a    s         @diction    f    g    h    j    k    l    ;                '    ret      
+  lsft       z    x         c           v    b    n    m    ,    .    /                rsft           
+  lctl       lalt lmet                  spc            bspc bspc left down up rght 
+)
+
+(defalias
+mod4b (tap-hold 200 (layer-delay 200 primary-mod-qwerty)(layer-switch primary-mod-qwerty))
+wor (layer-switch default)
+)
+
+(deflayer standard
+  esc      f1   f2   f3   f4   f5   f6   f7   f8   f9   f10              f11  f12  @wor del
+  grv      1    2    3    4    5    6    7    8    9    0                -    =    esc
+  tab      q    w    e    r    t    y    u    i    o    p                [    ]    \    
+  @mod4b   a    s    d    f    g    h    j    k    l    ;                '    ret       
+  lsft     z    x    c    v    b    n    m    ,    .    /                rsft           
+  lctl     lalt lmet           spc            bspc bspc left down up rght 
 )
 

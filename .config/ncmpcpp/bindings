@@ -131,6 +131,16 @@ def_key "x"
 def_key "X"
     set_crossfade
 
+def_key "d"
+  delete_playlist_items
+
+def_key "d"
+  delete_browser_items
+
+def_key "d"
+  delete_stored_playlist
+
+
 # Conclusion of this Section
 
 # File Settings
@@ -251,6 +261,9 @@ def_key "W"
 
 def_key "w"
   save_tag_changes
+
+def_key "w"
+    start_searching
 
 def_key "O"
     jump_to_playing_song

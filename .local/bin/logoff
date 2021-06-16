@@ -1,6 +1,7 @@
 #!/bin/sh
 
 state=$(printf "%b\n" "Reboot\nPoweroff\nLock" | dmenu -i)
+pacmanstate="$(pgrep pacman)"
 
 [ -z "$state" ] && exit
 
@@ -9,8 +10,8 @@ confirmation=$(printf "%b\n" "No\nYes" | dmenu -i -p "Am I Certain?")
 [ "$confirmation" = No ] && exit
 
 case $state in 
-    Reboot) loginctl reboot ;;
-    Poweroff) loginctl poweroff now ;;
+    Reboot) [ -n "$pacmanstate" ] && logoffsuspension.sh && loginctl reboot || loginctl reboot ;;
+    Poweroff) [ -n "$pacmanstate" ] && logoffsuspension.sh && loginctl poweroff now || loginctl poweroff now ;;
     Lock) slock ;;
 esac
 

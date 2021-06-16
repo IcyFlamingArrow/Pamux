@@ -18,7 +18,7 @@ static struct Config config = {
 	.image_pixels = 80,     /* if 0, the image will fit the notification */
 	.leading_pixels = 5,    /* space between title and body texts */
 	.padding_pixels = 10,   /* space around content */
-	.max_height = 300,      /* maximum height of a notification, after text wrapping */
+	.max_height = 400,      /* maximum height of a notification, after text wrapping */
 
 	/* text alignment, set to LeftAlignment, CenterAlignment or RightAlignment */
 	.alignment = CenterAlignment,
@@ -27,7 +27,7 @@ static struct Config config = {
 	.shrink = 0,
 
 	/* whether to wrap text */
-	.wrap = 0,
+	.wrap = 1,
 
 	/* time, in seconds, for a notification to stay alive */
 	.sec = 2,

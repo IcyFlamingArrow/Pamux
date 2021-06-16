@@ -8,6 +8,7 @@
 static char *font = { "FiraCode Nerd Font:pixelsize=17:antialias=true:autohint=true" };
 static char *font2[] = { "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
 static char *font3[] = { "Noto Color Emoji:pixelsize=10:antialias=true:autohint=true" };
+static char *font4[] = { "Siji:pixelsize=10:antialias=true:autohint=true" };
 
 static int borderpx = 0;
 

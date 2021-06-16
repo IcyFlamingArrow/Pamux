@@ -82,6 +82,9 @@ endfunction
 " Apply Xbindkeys automatically
     autocmd BufWritePost .xbindkeyrc !xbindkeys -p
 
+"Apply kmonad automatically
+"    autocmd BufWritePost *.kbd !killall kmonad && kmonad ~/.config/kmonad/mykeyboard.kbd
+
 " Line Settings and General Settings
 syntax enable
 filetype plugin on
